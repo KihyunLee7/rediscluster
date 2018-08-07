@@ -1,0 +1,6 @@
+redis:
+  host: localhost
+  port: 7010
+  password: 11111
+  cluster:
+    nodes: 127.0.0.1:7010, 127.0.0.1:7020, 127.0.0.1:7030
