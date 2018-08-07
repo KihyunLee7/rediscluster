@@ -49,8 +49,8 @@ public class WebController {
 
     @RequestMapping("/rename")
     public String rename() {
-        adsService.adsRename();
-        return "Done";
+        String result = adsService.adsRename();
+        return "Done : " + result;
     }
 
 }

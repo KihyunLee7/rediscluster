@@ -17,6 +17,6 @@ public class Ads implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Ads[keyword=%s, deals='%s']", keyword, desls);
+        return String.format("{ \"keyword\" : \"%s\", \"deals\" : %s}", keyword, desls);
     }
 }

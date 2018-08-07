@@ -8,5 +8,5 @@ public interface AdsRepository {
     Ads find(String keyword);
     void delete(String keyword);
     void deleteAll(String key);
-    void rename();
+    String rename();
 }

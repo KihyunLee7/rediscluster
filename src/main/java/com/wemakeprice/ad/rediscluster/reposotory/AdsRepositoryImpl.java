@@ -47,9 +47,12 @@ public class AdsRepositoryImpl implements AdsRepository{
     public Ads find(String keyword) {
 
         System.out.println("keyword : " + keyword +  " / keyword.hashCode() : " + keyword.hashCode());
-
-
-        return hashOperations.get(KEY, keyword.hashCode());
+        try {
+            return hashOperations.get(KEY, keyword.hashCode());
+        } catch (Exception e) {
+            System.out.println("e : " + e.toString());
+            return new Ads();
+        }
 
     }
 
@@ -67,9 +70,19 @@ public class AdsRepositoryImpl implements AdsRepository{
     }
 
     @Override
-    public void rename() {
-//        redisTemplate.delete(KEY);
-        redisTemplate.rename(KEY1, KEY);
+    public String rename() {
 
+        try {
+            if (redisTemplate.keys(KEY1) != null && redisTemplate.keys(KEY1).size() > 0) {
+                redisTemplate.delete(KEY);
+                //          redisTemplate.rename(KEY1, KEY);
+                redisTemplate.renameIfAbsent(KEY1, KEY);
+                return "OK";
+            } else {
+                return "Error";
+            }
+        } catch (Exception e) {
+            return e.toString();
+        }
     }
 }
